@@ -23,11 +23,15 @@ export function getColorModuleUnavailableReason(): ColorModuleUnavailableReason 
 }
 
 export function expectColorDiff(): typeof ColorDiff | null {
-  return getColorModuleUnavailableReason() === null ? ColorDiff : null
+  if (getColorModuleUnavailableReason() !== null) return null
+  if (typeof ColorDiff !== 'function' || !(ColorDiff as any).prototype?.render) return null
+  return ColorDiff
 }
 
 export function expectColorFile(): typeof ColorFile | null {
-  return getColorModuleUnavailableReason() === null ? ColorFile : null
+  if (getColorModuleUnavailableReason() !== null) return null
+  if (typeof ColorFile !== 'function') return null
+  return ColorFile
 }
 
 export function getSyntaxTheme(themeName: string): SyntaxTheme | null {

@@ -3,8 +3,12 @@ export type SyntaxTheme = {
 };
 
 export class ColorDiff {
+  constructor(patch: any, firstLine: string | null, filePath: string, fileContent: string | null) {}
   format(input: string): string {
     return input;
+  }
+  render(theme: string, width: number, dim: boolean): string[] | null {
+    return null;
   }
 }
 
